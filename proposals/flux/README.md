@@ -1,0 +1,261 @@
+### 1. Name of Project
+
+**Flux Framework** (encompassing `flux-core`, `flux-sched`, `flux-security`, `flux-accounting`, `flux-operator`, `flux-python`, `flux-sched-py`, and `flux-restful-api`)
+
+### 2. Project Description
+
+Flux Framework is a next-generation workload manager developed at Lawrence Livermore National Laboratory and deployed on the NNSA exascale system El Capitan along with several other Top 500 systems. Flux’s hierarchical scheduling architecture allows for nested instances that can manage resources at different levels of a system, from whole clusters down to individual cores. Its graph-based resource model provides rich, flexible expression and fine-grained control over diverse resources, making it uniquely suited for workloads with complex, heterogeneous requirements. Flux enables workflow components with different resource needs to coexist efficiently, addressing limitations in both traditional HPC schedulers and container orchestrators. Flux is called a "framework" because it is a suite of projects that assemble together to create the workload manager that we know as Flux. It is distinct from other workload managers due to its hierarchical scheduling, flexible resource model, and service- and event- driven architecture and oriented to serve emerging, dynamic and heteregenous workloads that coupled simulation with AI/ML demand. The Flux Framework consists of a modular ecosystem. We aim for Flux to join the High Performance Software Foundation (HPSF), and specifically propose to start membership with the inclusion of the following projects:
+
+*   **flux-core:** The backbone of the framework. It provides the messaging overlay, module loading system, hierarchical tree management, and standardized interfaces (based on RFCs) for building HPC workload managers.
+*   **flux-sched:** The graph-based scheduler module. It utilizes a directed graph model to represent resources, allowing it to schedule complex, heterogeneous hardware topologies with high throughput and devices like GPUs.
+*   **flux-operator:** A Kubernetes Operator that bridges HPC and Cloud Native. It automates the deployment of "MiniClusters"—fully functional Flux instances running as pods within Kubernetes. This enables seamless execution of MPI and HPC workloads inside Kubernetes without sacrificing the performance of a specialized batch scheduler.
+*   **flux-python** & **flux-sched-py**: Comprehensive Python bindings for the core and scheduler, allowing users to write custom scheduling policies (e.g., AI-driven scheduling) in Python.
+*  **flux-restful-api**: A web service that exposes Flux functionality over HTTP. This allows external systems (Web UIs, Workflow Engines, CI/CD pipelines) to submit jobs, query status, and inspect system state using standard REST patterns and JSON, removing the requirement for a local shell.
+
+We have chosen these projects that are most relevant to core Flux functionality ([flux-core](https://github.com/flux-framework/flux-core) and [flux-sched](https://github.com/flux-framework/flux-sched)) along with those that are or will be increasingly relevant to the AI/ML, cloud, or workflows communities (the remainder).
+
+**Key Features:**
+
+*   **Hierarchical Scaling:** Breaks the monolithic bottleneck by distributing scheduling decisions.
+*   **Modern Accessibility:** Language SDKs (Python, Go, C/C++, Rust, RESTFul API) Enable the creation of tools that cross environments, including web-based portals, dashboards, and automated remote submission systems without custom socket programming.
+*   **Graph-Based Scheduling:** Models complex hardware topologies natively.
+*   **Converged Computing:** Runs natively on both bare metal and Kubernetes, cloud and HPC.
+*   **Programmability:** The entire stack—from web API to scheduling algorithms—is accessible via modern languages (Python, Go, HTTP), making it the ideal testbed for systems research.
+
+Flux can be deployed as the system workload manager and scheduler, but also is flexible to be deployed under other workload managers. This deployment strategy is a site choice. Within the GitHub organization [flux-framework](https://github.com/flux-framework) and the associated [converged-computing](https://github.com/converged-computing) there are deployment methods that include Docker containers, Docker Compose, virtual machines with Terraform, Kubernetes, and SystemD units. The project has a Tutorials repository for lab-driven tutorial setup and content, and a suite of YouTube video Tutorials and talks.
+
+### 3. Statement on Alignment with High Performance Software Foundation's Mission
+
+Flux is a mature, open-source technology designed to solve the scalability and portability challenges of modern computing. The project aligns with the HPSF mission to "foster collaboration and stewardship of open source software projects that fuel innovation" in the following ways:
+
+**3.1 Solving the Scalability Gap**
+Flux addresses the "resource management gap" where static batch schedulers cannot keep up with dynamic, cloud-like, and ensemble workflows. By bringing Flux into HPSF, the foundation supports a critical architectural shift necessary for the post-Exascale era.
+
+**3.2 Modernizing HPC Access**
+Historical HPC tools are often isolated silos accessible only via SSH. By including **flux-restful-api**, **flux-python**, and **flux-sched-py** this project aligns with the goal of making HPC accessible to a broader audience. It allows developers to build modern web interfaces and automated pipelines on top of HPC infrastructure, modernizing the user experience.
+
+**3.3 Bridging HPC and Cloud (Converged Computing)**
+With the inclusion of the **flux-operator**, this project directly supports the industry's move toward Cloud Native HPC. Flux provides a unique solution that allows HPSF to govern a tool that is as relevant in the cloud as it is on bare metal.
+
+**3.4 Enabling Innovation via Custom Scheduling**
+By including **flux-sched-py**, Flux aligns with HPSF's mission to "fuel innovation." It allows data scientists to prototype novel scheduling algorithms (such as Reinforcement Learning schedulers) in Python, drastically lowering the barrier to entry for systems research.
+
+**3.5 Modular and Composable Design**
+Flux is composed of loosely coupled modules. Core projects, API services, and plugins that can be developed within are independent. This modularity empowers researchers to swap components without forking the entire code base.
+
+**3.6 Open Standards and Governance**
+Flux is built on a "spec-first" philosophy. Protocols are defined in RFCs (Request for Comments) before implementation. This rigorous adherence to open standards fosters a healthy ecosystem where external tools can easily interface with the resource manager.
+
+### 4. Project Website
+
+[flux-framework.org](http://flux-framework.org)
+
+### 5. Open Source License
+
+*   **LGPL-3.0** (flux-core, flux-python, flux-sched)
+*   **MIT** (flux-operator, flux-sched-py, flux-restful-api)
+
+[License File (flux-core)](https://github.com/flux-framework/flux-core/blob/master/LICENSE)
+[License File (flux-sched)](https://github.com/flux-framework/flux-sched/blob/master/LICENSE)
+[License File (flux-operator)](https://github.com/flux-framework/flux-operator/blob/master/LICENSE)
+[License File (flux-python)](https://github.com/flux-framework/flux-python/blob/master/LICENSE)
+[License File (flux-sched-py)](https://github.com/converged-computing/flux-sched-py/blob/main/LICENSE)
+[License File (flux-restful-api)](https://github.com/flux-framework/flux-restful-api/blob/master/LICENSE)
+
+### 6. Code of Conduct
+
+[Code of Conduct (flux-operator)](https://github.com/flux-framework/flux-operator/blob/master/.github/CODE_OF_CONDUCT.md)
+[Code of Conduct (flux-python)](https://github.com/flux-framework/flux-python/blob/master/.github/CODE_OF_CONDUCT.md)
+[Code of Conduct (flux-sched-py)](https://github.com/converged-computing/flux-sched-py/blob/main/.github/CODE_OF_CONDUCT.md)
+[Code of Conduct (flux-restful-api)](https://github.com/flux-framework/flux-restful-api/blob/master/.github/CODE_OF_CONDUCT.md)
+
+### 7. Governance Practices
+
+[Governance (flux-operator)](https://github.com/flux-framework/flux-operator/blob/master/.github/GOVERNANCE.md)
+[Governance (flux-python)](https://github.com/flux-framework/flux-python/blob/master/.github/GOVERNANCE.md)
+[Governance (flux-sched-py)](https://github.com/converged-computing/flux-sched-py/blob/main/.github/GOVERNANCE.md)
+[Governance (flux-restful-api)](https://github.com/flux-framework/flux-restful-api/blob/master/.github/GOVERNANCE.md)
+
+### 8. Two Sponsors from the High Performance Software Foundation's Technical Advisory Committee
+
+1.  *Todd Gamblin*
+2.  *Greg Becker*
+
+### 9. What is the project's solution for source control?
+
+All source code is maintained in GitHub repositories within the [Flux Framework Organization](https://github.com/flux-framework).
+
+### 10. What is the project's solution for issue tracking?
+
+Issues are tracked individually in the GitHub repositories for each component (e.g., `flux-core/issues`, `flux-restful-api/issues`). Discussions and design proposals are handled via GitHub Discussions and the Flux Discussion List at `flux-discuss@lists.llnl.gov`.
+
+### 11. Please list all external dependencies and their license
+
+### flux-operator Dependencies
+
+**Direct Dependencies**
+
+| Dependency | License |
+| :--- | :--- |
+| **github.com/go-logr/logr** | Apache-2.0 |
+| **github.com/google/uuid** | BSD-3-Clause |
+| **github.com/mitchellh/hashstructure/v2** | MIT |
+| **k8s.io/api** | Apache-2.0 |
+| **k8s.io/apimachinery** | Apache-2.0 |
+| **k8s.io/client-go** | Apache-2.0 |
+| **k8s.io/klog/v2** | Apache-2.0 |
+| **k8s.io/kube-openapi** | Apache-2.0 |
+| **sigs.k8s.io/controller-runtime** | Apache-2.0 |
+| **sigs.k8s.io/yaml** | MIT |
+
+### flux-restful-api Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **aiofiles** | Apache-2.0 |
+| **alembic** | MIT |
+| **fastapi** | MIT |
+| **httpx** | BSD-3-Clause |
+| **jinja2** | BSD-3-Clause |
+| **Markdown** | BSD-3-Clause |
+| **passlib[bcrypt]** | BSD-3-Clause |
+| **pyaml** | MIT |
+| **pydantic** | MIT |
+| **pydantic-settings** | MIT |
+| **pytest** | MIT |
+| **python-dotenv** | BSD-3-Clause |
+| **python-jose[cryptography]** | MIT |
+| **python-multipart** | Apache-2.0 |
+| **requests** | Apache-2.0 |
+| **sqlalchemy** | MIT |
+| **uvicorn** | BSD-3-Clause |
+
+
+### flux-python Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **cffi** | MIT |
+| **flux-core** | LGPL-3.0 |
+| **pyyaml** | MIT |
+
+
+### flux-sched-py Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **cython** | Apache-2.0 |
+| **flux-sched** | GPL-3.0 |
+
+
+## flux-core Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **ZeroMQ (libzmq)** | LGPL-3.0+ |
+| **czmq** | MPL-2.0 |
+| **hwloc** | BSD-3-Clause |
+| **Lua** (5.1+) | MIT |
+| **Jansson** | MIT |
+| **libev** | BSD-2-Clause / GPL-2.0+ |
+| **LZ4** | BSD-2-Clause |
+| **SQLite** | Public Domain |
+| **YAML-CPP** | MIT |
+| **Boost** (Graph Library) | Boost Software License |
+| **MUNGE** (Optional) | GPL-3.0 |
+
+## flux-sched Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **Boost** (Graph Library >= 1.66) | Boost Software License |
+| **flux-core** | LGPL-3.0 |
+| **hwloc** (>= 1.11.1) | BSD-3-Clause |
+| **jansson** (>= 2.10) | MIT |
+| **jsonschema** (Python module >= 2.3.0) | MIT |
+| **libedit** | BSD-3-Clause |
+| **libuuid** | BSD-3-Clause |
+| **Python** (3.6+) | PSF License |
+| **PyYAML** (Python module >= 3.10) | MIT |
+| **yaml-cpp** | MIT |
+
+
+### 12. Please describe your release methodology and mechanics
+
+Flux utilizes Semantic Versioning.
+
+*   **Releases:** Tagged releases are created on GitHub for all components.
+*   **Distribution:**
+    *   **HPC:** Source tarballs and Spack packages (`spack install flux-core`) are the primary method for bare-metal HPC.
+    *   **Python/Web:** `flux-restful-api` is distributed as a Python package and a Container image.
+    *   **Cloud/K8s:** The `flux-operator` is distributed via container images on GitHub Container Registry (ghcr.io) and Helm Charts.
+*   **Cadence:** Regular releases are cut as features mature, with rigorous integration testing performed before release candidates.
+
+### 13. Please describe Software Quality efforts (CI, security, auditing)
+
+*   **CI/CD:** GitHub Actions are used for all repos.
+    *   *Core/Python:* Runs unit tests, `sharness` integration tests, and API tests.
+    *   *REST API:* Runs Python test suites against a mock Flux instance and live integration tests.
+    *   *Operator:* Runs End-to-End (E2E) tests against Kind/Minikube.
+*   **Coverage:** Code coverage is tracked via Codecov.
+*   **Static Analysis:** The core projects utilizes "merge on passing," LGTM and Coverity Scan.
+*   **Security:** `flux-security` handles privilege separation on bare metal. The REST API relies on the underlying system auth or can be configured behind authentication proxies for web security.
+
+### 14. Please list the project's leadership team
+
+**Project Leaders / Core Maintainers:**
+*   **James Corbett** (LLNL) - Core/Sched
+*   **Jim Garlick** (LLNL) - Core Architect
+*   **Mark Grondona** (LLNL) - Core Architect
+*   **Dan Milroy** (LLNL) - Sched
+*   **Tom Scogland** (LLNL) - Core/Sched
+*   **Vanessa Sochat** (LLNL) - Flux Operator, Flux Python, Flux Sched Py, Flux Restful API
+
+### 15. Please list the project members with access to commit to the mainline of the project
+Commit access is granted to the Maintainers of the respective repositories. Key committers include:
+
+*   `chu11` (Albert Chu)
+*   `jameshcorbett` (James Corbett)
+*   `garlick` (Jim Garlick)
+*   `grondo` (Mark Grondona)
+*   `milroy` (Dan Milroy)
+*   `trws` (Tom Scogland)
+*   `vsoch` (Vanessa Sochat)
+
+### 16. Please describe the project's decision-making process
+
+Flux uses a "lazy consensus" model for most changes.
+
+*   **RFC Process:** Major architectural changes, protocol definitions, and API modifications must go through the [Flux RFC](https://flux-framework.readthedocs.io/en/latest/rfc/README.html) process.
+*   **Pull Requests:** All code changes require review by at least one other maintainer.
+*   **Governance:** The Project Leadership and maintainers resolves conflicts that cannot be settled by consensus.
+
+### 17. What is the maturity level of your project?
+
+The choice below reflects the small developer footprint of Flux, and not the impact or importance of the project. The maintainers need to adapt to membership in HPSF before committing to being an established member.
+
+[Emerging](https://github.com/hpsfoundation/tac?tab=readme-ov-file#emerging)
+
+### 18. Please list the project's official communication channels
+
+*   **Website:** [flux-framework.org](http://flux-framework.org)
+*   **Mailing List:** [flux-framework List](mailto:flux-discuss@lists.llnl.gov)
+*   **Slack:** [llnl-performance.slack.com](https://llnl-performance.slack.com)
+*   **GitHub Discussions:** [flux-core Discussions](https://github.com/flux-framework/flux-core/discussions)
+
+### 19. Please list the project's social media accounts
+
+*   **Twitter/X:** [@FluxFramework](https://x.com/FluxFramework)
+
+### 20. Please describe any existing financial sponsorships
+
+*   Primary development is funded by the **U.S. Department of Energy (DOE)** and the **National Nuclear Security Administration (NNSA)**, previously under the Exascale Computing Project (ECP) and currently under the Advanced Simulation and Computing (ASC) program at LLNL.
+
+### 21. Please describe the project's infrastructure needs or requests
+
+**Needs:**
+*   None immediate.
+
+**Requests:**
+*   Access to diverse hardware CI runners (specifically ARM64 and PowerPC).
+*   Cloud credits for large-scale integration testing.
