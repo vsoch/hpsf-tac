@@ -1,18 +1,19 @@
 ### 1. Name of Project
 
-**Flux Framework** (encompassing `flux-core`, `flux-sched`, `flux-security`, `flux-accounting`, `flux-operator`, `flux-python`, `flux-sched-py`, and `flux-restful-api`)
+**Flux Framework** (encompassing  all project repositories under the `flux-framework` GitHub organization such as `flux-core`, `flux-sched`, `flux-security`, `flux-accounting`, `flux-operator`, `flux-python`, and `flux-restful-api`) and associated project `flux-sched-py` under the converged-computing GitHub organization.
 
 ### 2. Project Description
 
-Flux Framework is a next-generation workload manager developed at Lawrence Livermore National Laboratory and deployed on the NNSA exascale system El Capitan along with several other Top 500 systems. Flux’s hierarchical scheduling architecture allows for nested instances that can manage resources at different levels of a system, from whole clusters down to individual cores. Its graph-based resource model provides rich, flexible expression and fine-grained control over diverse resources, making it uniquely suited for workloads with complex, heterogeneous requirements. Flux enables workflow components with different resource needs to coexist efficiently, addressing limitations in both traditional HPC schedulers and container orchestrators. Flux is called a "framework" because it is a suite of projects that assemble together to create the workload manager that we know as Flux. It is distinct from other workload managers due to its hierarchical scheduling, flexible resource model, and service- and event- driven architecture and oriented to serve emerging, dynamic and heteregenous workloads that coupled simulation with AI/ML demand. The Flux Framework consists of a modular ecosystem. We aim for Flux to join the High Performance Software Foundation (HPSF), and specifically propose to start membership with the inclusion of the following projects:
+Flux Framework is a next-generation workload manager developed at Lawrence Livermore National Laboratory and deployed on the NNSA exascale system El Capitan along with several other Top 500 systems. Flux’s hierarchical scheduling architecture allows for nested instances that can manage resources at different levels of a system, from whole clusters down to individual cores. Its graph-based resource model provides rich, flexible expression and fine-grained control over diverse resources, making it uniquely suited for workloads with complex, heterogeneous requirements. Flux enables workflow components with different resource needs to coexist efficiently, addressing limitations in both traditional HPC schedulers and container orchestrators. Flux is called a "framework" because it is a suite of projects that assemble together to create the workload manager that we know as Flux. It is distinct from other workload managers due to its hierarchical scheduling, flexible resource model, and service- and event- driven architecture and oriented to serve emerging, dynamic and heteregenous workloads that coupled simulation with AI/ML demand. The Flux Framework consists of a modular ecosystem. We aim for Flux to join the High Performance Software Foundation (HPSF) to support the project continued growth. We highlight the following projects:
 
 *   **flux-core:** The backbone of the framework. It provides the messaging overlay, module loading system, hierarchical tree management, and standardized interfaces (based on RFCs) for building HPC workload managers.
 *   **flux-sched:** The graph-based scheduler module. It utilizes a directed graph model to represent resources, allowing it to schedule complex, heterogeneous hardware topologies with high throughput and devices like GPUs.
+*   **flux-security:** The security infrastructure library. It implements authentication and message integrity mechanisms to validate user credentials and requests, ensuring secure privilege separation and safe execution in multi-user environments.
 *   **flux-operator:** A Kubernetes Operator that bridges HPC and Cloud Native. It automates the deployment of "MiniClusters"—fully functional Flux instances running as pods within Kubernetes. This enables seamless execution of MPI and HPC workloads inside Kubernetes without sacrificing the performance of a specialized batch scheduler.
 *   **flux-python** & **flux-sched-py**: Comprehensive Python bindings for the core and scheduler, allowing users to write custom scheduling policies (e.g., AI-driven scheduling) in Python.
 *  **flux-restful-api**: A web service that exposes Flux functionality over HTTP. This allows external systems (Web UIs, Workflow Engines, CI/CD pipelines) to submit jobs, query status, and inspect system state using standard REST patterns and JSON, removing the requirement for a local shell.
 
-We have chosen these projects that are most relevant to core Flux functionality ([flux-core](https://github.com/flux-framework/flux-core) and [flux-sched](https://github.com/flux-framework/flux-sched)) along with those that are or will be increasingly relevant to the AI/ML, cloud, or workflows communities (the remainder).
+We have chosen these projects to highlight that are most relevant to core Flux functionality ([flux-core](https://github.com/flux-framework/flux-core) and [flux-sched](https://github.com/flux-framework/flux-sched)) along with those that are or will be increasingly relevant to the AI/ML, cloud, or workflows communities (the remainder).
 
 **Key Features:**
 
@@ -21,6 +22,7 @@ We have chosen these projects that are most relevant to core Flux functionality 
 *   **Graph-Based Scheduling:** Models complex hardware topologies natively.
 *   **Converged Computing:** Runs natively on both bare metal and Kubernetes, cloud and HPC.
 *   **Programmability:** The entire stack—from web API to scheduling algorithms—is accessible via modern languages (Python, Go, HTTP), making it the ideal testbed for systems research.
+*   **Robust Security**: Enforces strict privilege separation, cryptographic message integrity, and distributed authentication (e.g., munge), ensuring safe, multi-user resource sharing across diverse environments.
 
 Flux can be deployed as the system workload manager and scheduler, but also is flexible to be deployed under other workload managers. This deployment strategy is a site choice. Within the GitHub organization [flux-framework](https://github.com/flux-framework) and the associated [converged-computing](https://github.com/converged-computing) there are deployment methods that include Docker containers, Docker Compose, virtual machines with Terraform, Kubernetes, and SystemD units. The project has a Tutorials repository for lab-driven tutorial setup and content, and a suite of YouTube video Tutorials and talks.
 
@@ -52,11 +54,12 @@ Flux is built on a "spec-first" philosophy. Protocols are defined in RFCs (Reque
 
 ### 5. Open Source License
 
-*   **LGPL-3.0** (flux-core, flux-python, flux-sched)
+*   **LGPL-3.0** (flux-core, flux-python, flux-sched, flux-security)
 *   **MIT** (flux-operator, flux-sched-py, flux-restful-api)
 
 [License File (flux-core)](https://github.com/flux-framework/flux-core/blob/master/LICENSE)
 [License File (flux-sched)](https://github.com/flux-framework/flux-sched/blob/master/LICENSE)
+[License File (flux-security)](https://github.com/flux-framework/flux-security/blob/master/LICENSE)
 [License File (flux-operator)](https://github.com/flux-framework/flux-operator/blob/master/LICENSE)
 [License File (flux-python)](https://github.com/flux-framework/flux-python/blob/master/LICENSE)
 [License File (flux-sched-py)](https://github.com/converged-computing/flux-sched-py/blob/main/LICENSE)
@@ -78,12 +81,12 @@ Flux is built on a "spec-first" philosophy. Protocols are defined in RFCs (Reque
 
 ### 8. Two Sponsors from the High Performance Software Foundation's Technical Advisory Committee
 
-1.  *Todd Gamblin*
-2.  *Greg Becker*
+1.  *Xavier Delaruelle* ([@xdelaruelle](https://github.com/xdelaruelle))
+2.  *Axel Huebl* ([@ax3l](https://github.com/ax3l))
 
 ### 9. What is the project's solution for source control?
 
-All source code is maintained in GitHub repositories within the [Flux Framework Organization](https://github.com/flux-framework).
+All core project source code is maintained in GitHub repositories within the [Flux Framework Organization](https://github.com/flux-framework).
 
 ### 10. What is the project's solution for issue tracking?
 
@@ -162,7 +165,7 @@ Issues are tracked individually in the GitHub repositories for each component (e
 | **SQLite** | Public Domain |
 | **YAML-CPP** | MIT |
 | **Boost** (Graph Library) | Boost Software License |
-| **MUNGE** (Optional) | GPL-3.0 |
+| **munge** (Optional) | GPL-3.0 |
 
 ## flux-sched Dependencies
 
@@ -179,6 +182,18 @@ Issues are tracked individually in the GitHub repositories for each component (e
 | **PyYAML** (Python module >= 3.10) | MIT |
 | **yaml-cpp** | MIT |
 
+### flux-security Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **libsodium** | ISC |
+| **jansson** | MIT |
+| **libuuid** (util-linux) | BSD-3-Clause |
+| **munge** | GPL-3.0 |
+| **Linux-PAM** | BSD-3-Clause / GPL |
+| **pam_wrapper** | GPL-3.0 |
+| **Autotools** (Autoconf, Automake, Libtool) | GPL-3.0 |
+| **pkg-config** | GPL-2.0 |
 
 ### 12. Please describe your release methodology and mechanics
 
@@ -189,7 +204,7 @@ Flux utilizes Semantic Versioning.
     *   **HPC:** Source tarballs and Spack packages (`spack install flux-core`) are the primary method for bare-metal HPC.
     *   **Python/Web:** `flux-restful-api` is distributed as a Python package and a Container image.
     *   **Cloud/K8s:** The `flux-operator` is distributed via container images on GitHub Container Registry (ghcr.io) and Helm Charts.
-*   **Cadence:** Regular releases are cut as features mature, with rigorous integration testing performed before release candidates.
+*   **Cadence:** The core Flux projects follow a monthly release cadence matched to [TOSS](https://hpc.llnl.gov/software/toss-tri-lab-operating-system-stack) releases. For non-core projects (e.g., the Flux Operator) regular releases are cut as features mature. For all Flux projects, integration testing is performed for all changes and release candidates.
 
 ### 13. Please describe Software Quality efforts (CI, security, auditing)
 
@@ -234,7 +249,7 @@ Flux uses a "lazy consensus" model for most changes.
 
 The choice below reflects the small developer footprint of Flux, and not the impact or importance of the project. The maintainers need to adapt to membership in HPSF before committing to being an established member.
 
-[Emerging](https://github.com/hpsfoundation/tac?tab=readme-ov-file#emerging)
+[Established](https://github.com/hpsfoundation/tac?tab=readme-ov-file#established)
 
 ### 18. Please list the project's official communication channels
 
