@@ -13,7 +13,8 @@ Flux Framework is a next-generation workload manager developed at Lawrence Liver
 *   **flux-python** & **flux-sched-py**: Comprehensive Python bindings for the core and scheduler, allowing users to write custom scheduling policies (e.g., AI-driven scheduling) in Python.
 *  **flux-restful-api**: A web service that exposes Flux functionality over HTTP. This allows external systems (Web UIs, Workflow Engines, CI/CD pipelines) to submit jobs, query status, and inspect system state using standard REST patterns and JSON, removing the requirement for a local shell.
 *  **fluence**: Custom scheduler plugin for Kubernetes that enables gang scheduling and more fine-grained topology specification for Job and related abstractions.
-**dyad**: A module that provides an abstraction of shared storage over local storage resources, enabling orchestration of jobs that produce and consume data, acceleration of I/O-bound workloads, and optimized job scheduling with respect to data locality and dependencies.
+*  **dyad**: A module that provides an abstraction of shared storage over local storage resources, enabling orchestration of jobs that produce and consume data, acceleration of I/O-bound workloads, and optimized job scheduling with respect to data locality and dependencies.
+*  **flux-coral2**: A project that provides specialized plugins and services tailored for the DOE CORAL-2 systems. These components enable Flux to manage and interact with specific system resources and services on those large-scale HPC platforms.
 
 We have chosen these projects to highlight that are most relevant to core Flux functionality ([flux-core](https://github.com/flux-framework/flux-core) and [flux-sched](https://github.com/flux-framework/flux-sched)) along with those that are or will be increasingly relevant to the AI/ML, cloud, or workflows communities (the remainder).
 
@@ -25,7 +26,7 @@ We have chosen these projects to highlight that are most relevant to core Flux f
 *   **Converged Computing:** Runs natively on both bare metal and Kubernetes, cloud and HPC.
 *   **Programmability:** The entire stack—from web API to scheduling algorithms—is accessible via modern languages (Python, Go, HTTP), making it the ideal testbed for systems research.
 *   **Robust Security**: Enforces strict privilege separation, cryptographic message integrity, and distributed authentication (e.g., munge), ensuring safe, multi-user resource sharing across diverse environments.
-*   **Data Intensive**: Dyad is well-suited for data-intensive workflows involving AI/ML.
+*   **Data Intensive**: Projects are well-suited for data-intensive workflows involving AI/ML, inventory tracking, and integration of specialized storage.
 
 Flux can be deployed as the system workload manager and scheduler, but also is flexible to be deployed under other workload managers. This deployment strategy is a site choice. Within the GitHub organization [flux-framework](https://github.com/flux-framework) and the associated [converged-computing](https://github.com/converged-computing) there are deployment methods that include Docker containers, Docker Compose, virtual machines with Terraform, Kubernetes, and SystemD units. The project has a Tutorials repository for lab-driven tutorial setup and content, and a suite of YouTube video Tutorials and talks.
 
@@ -70,6 +71,8 @@ Flux is built on a "spec-first" philosophy. Protocols are defined in RFCs (Reque
 [License File (flux-restful-api)](https://github.com/flux-framework/flux-restful-api/blob/master/LICENSE)
 [License File (fluence)](https://github.com/flux-framework/flux-k8s/blob/master/LICENSE)
 [License File (dyad)](https://github.com/flux-framework/dyad/blob/main/LICENSE)
+[License File (flux-coral2)](https://github.com/flux-framework/flux-coral2/blob/master/LICENSE)
+
 
 ### 6. Code of Conduct
 
@@ -224,6 +227,22 @@ Issues are tracked individually in the GitHub repositories for each component (e
 | **mochi-margo** | https://github.com/mochi-hpc/mochi-margo/blob/main/COPYRIGHT |
 | **Boost** (multi_index) | Boost Software License |
 
+### flux-coral2 Dependencies 
+
+| Dependency | License |
+| :--- | :--- |
+| **jansson** | MIT |
+| **libsodium** | ISC License |
+| **libflux-core** | LGPL-3.0 (Project License) |
+| **libpals** | GNU General Public License (GPL) v3.0 or later |
+| **libcxi** | BSD-2-Clause |
+| **Python** | Python Software Foundation License (PSF) |
+| **Python Module: `kubernetes`** | Apache License 2.0 |
+| **Python Module: `pylint`** | GPL-2.0-or-later |
+| **Python Module: `sphinx`** | BSD License |
+| **Python Module: `docutils`** | BSD, GPL, Public Domain (Multiple) |
+| **libdl** | System Library License |
+
 ### 12. Please describe your release methodology and mechanics
 
 Flux utilizes Semantic Versioning.
@@ -248,7 +267,7 @@ Flux utilizes Semantic Versioning.
 ### 14. Please list the project's leadership team
 
 **Project Leaders / Core Maintainers:**
-*   **James Corbett** (LLNL) - Core/Sched
+*   **James Corbett** (LLNL) - Core/Sched, Flux CORAL-2
 *   **Jim Garlick** (LLNL) - Core Architect
 *   **Mark Grondona** (LLNL) - Core Architect
 *   **Dan Milroy** (LLNL) - Sched, Fluence
