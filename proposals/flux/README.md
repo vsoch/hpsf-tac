@@ -13,6 +13,7 @@ Flux Framework is a next-generation workload manager developed at Lawrence Liver
 *   **flux-python** & **flux-sched-py**: Comprehensive Python bindings for the core and scheduler, allowing users to write custom scheduling policies (e.g., AI-driven scheduling) in Python.
 *  **flux-restful-api**: A web service that exposes Flux functionality over HTTP. This allows external systems (Web UIs, Workflow Engines, CI/CD pipelines) to submit jobs, query status, and inspect system state using standard REST patterns and JSON, removing the requirement for a local shell.
 *  **fluence**: Custom scheduler plugin for Kubernetes that enables gang scheduling and more fine-grained topology specification for Job and related abstractions.
+**dyad**: A module that provides an abstraction of shared storage over local storage resources, enabling orchestration of jobs that produce and consume data, acceleration of I/O-bound workloads, and optimized job scheduling with respect to data locality and dependencies.
 
 We have chosen these projects to highlight that are most relevant to core Flux functionality ([flux-core](https://github.com/flux-framework/flux-core) and [flux-sched](https://github.com/flux-framework/flux-sched)) along with those that are or will be increasingly relevant to the AI/ML, cloud, or workflows communities (the remainder).
 
@@ -24,6 +25,7 @@ We have chosen these projects to highlight that are most relevant to core Flux f
 *   **Converged Computing:** Runs natively on both bare metal and Kubernetes, cloud and HPC.
 *   **Programmability:** The entire stack—from web API to scheduling algorithms—is accessible via modern languages (Python, Go, HTTP), making it the ideal testbed for systems research.
 *   **Robust Security**: Enforces strict privilege separation, cryptographic message integrity, and distributed authentication (e.g., munge), ensuring safe, multi-user resource sharing across diverse environments.
+*   **Data Intensive**: Dyad is well-suited for data-intensive workflows involving AI/ML.
 
 Flux can be deployed as the system workload manager and scheduler, but also is flexible to be deployed under other workload managers. This deployment strategy is a site choice. Within the GitHub organization [flux-framework](https://github.com/flux-framework) and the associated [converged-computing](https://github.com/converged-computing) there are deployment methods that include Docker containers, Docker Compose, virtual machines with Terraform, Kubernetes, and SystemD units. The project has a Tutorials repository for lab-driven tutorial setup and content, and a suite of YouTube video Tutorials and talks.
 
@@ -55,7 +57,7 @@ Flux is built on a "spec-first" philosophy. Protocols are defined in RFCs (Reque
 
 ### 5. Open Source License
 
-*   **LGPL-3.0** (flux-core, flux-python, flux-sched, flux-security)
+*   **LGPL-3.0** (flux-core, flux-python, flux-sched, flux-security, dyad)
 *   **MIT** (flux-operator, flux-sched-py, flux-restful-api)
 *   **Apache 2.0** (fluence)
 
@@ -67,6 +69,7 @@ Flux is built on a "spec-first" philosophy. Protocols are defined in RFCs (Reque
 [License File (flux-sched-py)](https://github.com/converged-computing/flux-sched-py/blob/main/LICENSE)
 [License File (flux-restful-api)](https://github.com/flux-framework/flux-restful-api/blob/master/LICENSE)
 [License File (fluence)](https://github.com/flux-framework/flux-k8s/blob/master/LICENSE)
+[License File (dyad)](https://github.com/flux-framework/dyad/blob/main/LICENSE)
 
 ### 6. Code of Conduct
 
@@ -210,6 +213,17 @@ Issues are tracked individually in the GitHub repositories for each component (e
 | **k8s.io/klog/v2** | Apache-2.0 |
 | **k8s.io/kubectl** | Apache-2.0 |
 
+### dyad Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **jansson** | MIT |
+| **MURMUR3** | in the public domain |
+| **LIBB64**  |  Creative Commons Public Domain License |
+| ** ucx** | BSD3 |
+| **mochi-margo** | https://github.com/mochi-hpc/mochi-margo/blob/main/COPYRIGHT |
+| **Boost** (multi_index) | Boost Software License |
+
 ### 12. Please describe your release methodology and mechanics
 
 Flux utilizes Semantic Versioning.
@@ -239,8 +253,9 @@ Flux utilizes Semantic Versioning.
 *   **Mark Grondona** (LLNL) - Core Architect
 *   **Dan Milroy** (LLNL) - Sched, Fluence
 *   **Tom Scogland** (LLNL) - Core/Sched
-*   **Vanessa Sochat** (LLNL) - Flux Operator, Flux Python, Flux Sched Py, Flux Restful API, Fluence
-
+*   **Vanessa Sochat** (LLNL) - Flux Operator, Flux Python, Flux Sched Py, Flux RESTful API, Fluence
+*   **Jae-Seung Yeom** (LLNL) - dyad
+  
 ### 15. Please list the project members with access to commit to the mainline of the project
 Commit access is granted to the Maintainers of the respective repositories. Key committers include:
 
@@ -251,12 +266,13 @@ Commit access is granted to the Maintainers of the respective repositories. Key 
 *   `milroy` (Dan Milroy)
 *   `trws` (Tom Scogland)
 *   `vsoch` (Vanessa Sochat)
-
+*   `JaeseungYeom` (Jae-Seung Yeom)
+  
 ### 16. Please describe the project's decision-making process
 
 Flux uses a "lazy consensus" model for most changes.
 
-*   **RFC Process:** Major architectural changes, protocol definitions, and API modifications must go through the [Flux RFC](https://flux-framework.readthedocs.io/en/latest/rfc/README.html) process.
+*   **RFC Process:** Major architectural changes, protocol definitions, and API modifications must go through the [Flux RFC](https://flux-framework.readthedocs.io/projects/flux-rfc/en/latest/spec_1.html) process.
 *   **Pull Requests:** All code changes require review by at least one other maintainer.
 *   **Governance:** The Project Leadership and maintainers resolves conflicts that cannot be settled by consensus.
 
