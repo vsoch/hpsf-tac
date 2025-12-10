@@ -80,10 +80,7 @@ The Flux Framework organization includes all projects under a common [Code of Co
 
 ### 7. Governance Practices
 
-[Governance (flux-operator)](https://github.com/flux-framework/flux-operator/blob/master/.github/GOVERNANCE.md)
-[Governance (flux-python)](https://github.com/flux-framework/flux-python/blob/master/.github/GOVERNANCE.md)
-[Governance (flux-sched-py)](https://github.com/converged-computing/flux-sched-py/blob/main/.github/GOVERNANCE.md)
-[Governance (flux-restful-api)](https://github.com/flux-framework/flux-restful-api/blob/master/.github/GOVERNANCE.md)
+The Flux Framework project describes roles, responsibilities, and decision-making mechanisms in a common [Flux Framework Project Governance](https://flux-framework.readthedocs.io/projects/flux-rfc/en/latest/spec_48.html) document.
 
 ### 8. Two Sponsors from the High Performance Software Foundation's Technical Advisory Committee
 
