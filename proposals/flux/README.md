@@ -8,7 +8,8 @@ Flux Framework is a next-generation workload manager developed at Lawrence Liver
 
 *   **flux-core:** The backbone of the framework. It provides the messaging overlay, module loading system, hierarchical tree management, and standardized interfaces (based on RFCs) for building HPC workload managers.
 *   **flux-sched:** The graph-based scheduler module. It utilizes a directed graph model to represent resources, allowing it to schedule complex, heterogeneous hardware topologies with high throughput and devices like GPUs.
-*   **flux-security:** The security infrastructure library. It implements authentication and message integrity mechanisms to validate user credentials and requests, ensuring secure privilege separation and safe execution in multi-user environments.
+*   **flux-security:** The security infrastructure library and small setuid helper `imp`. It implements authentication and message integrity mechanisms to validate user credentials and requests, ensuring secure privilege separation and safe execution in multi-user environments.
+*   **flux-accounting:** The accounting service providing banks, hierarchical shares and fair-share support for flux as well as long-term storage of events and usage.
 *   **flux-operator:** A Kubernetes Operator that bridges HPC and Cloud Native. It automates the deployment of "MiniClusters"—fully functional Flux instances running as pods within Kubernetes. This enables seamless execution of MPI and HPC workloads inside Kubernetes without sacrificing the performance of a specialized batch scheduler.
 *   **flux-python** & **flux-sched-py**: Comprehensive Python bindings for the core and scheduler, allowing users to write custom scheduling policies (e.g., AI-driven scheduling) in Python.
 *  **flux-restful-api**: A web service that exposes Flux functionality over HTTP. This allows external systems (Web UIs, Workflow Engines, CI/CD pipelines) to submit jobs, query status, and inspect system state using standard REST patterns and JSON, removing the requirement for a local shell.
@@ -101,62 +102,8 @@ Issues are tracked individually in the GitHub repositories for each component (e
 
 ### 11. Please list all external dependencies and their license
 
-### flux-operator Dependencies
-
-**Direct Dependencies**
-
-| Dependency | License |
-| :--- | :--- |
-| **github.com/go-logr/logr** | Apache-2.0 |
-| **github.com/google/uuid** | BSD-3-Clause |
-| **github.com/mitchellh/hashstructure/v2** | MIT |
-| **k8s.io/api** | Apache-2.0 |
-| **k8s.io/apimachinery** | Apache-2.0 |
-| **k8s.io/client-go** | Apache-2.0 |
-| **k8s.io/klog/v2** | Apache-2.0 |
-| **k8s.io/kube-openapi** | Apache-2.0 |
-| **sigs.k8s.io/controller-runtime** | Apache-2.0 |
-| **sigs.k8s.io/yaml** | MIT |
-
-### flux-restful-api Dependencies
-
-| Dependency | License |
-| :--- | :--- |
-| **aiofiles** | Apache-2.0 |
-| **alembic** | MIT |
-| **fastapi** | MIT |
-| **httpx** | BSD-3-Clause |
-| **jinja2** | BSD-3-Clause |
-| **Markdown** | BSD-3-Clause |
-| **passlib[bcrypt]** | BSD-3-Clause |
-| **pyaml** | MIT |
-| **pydantic** | MIT |
-| **pydantic-settings** | MIT |
-| **pytest** | MIT |
-| **python-dotenv** | BSD-3-Clause |
-| **python-jose[cryptography]** | MIT |
-| **python-multipart** | Apache-2.0 |
-| **requests** | Apache-2.0 |
-| **sqlalchemy** | MIT |
-| **uvicorn** | BSD-3-Clause |
-
-
-### flux-python Dependencies
-
-| Dependency | License |
-| :--- | :--- |
-| **cffi** | MIT |
-| **flux-core** | LGPL-3.0 |
-| **pyyaml** | MIT |
-
-
-### flux-sched-py Dependencies
-
-| Dependency | License |
-| :--- | :--- |
-| **cython** | Apache-2.0 |
-| **flux-sched** | GPL-3.0 |
-
+<details>
+<summary> Click here for the dependencies for each component project </summary>
 
 ## flux-core Dependencies
 
@@ -201,6 +148,60 @@ Issues are tracked individually in the GitHub repositories for each component (e
 | **pam_wrapper** | GPL-3.0 |
 | **Autotools** (Autoconf, Automake, Libtool) | GPL-3.0 |
 | **pkg-config** | GPL-2.0 |
+
+### flux-operator Dependencies
+
+**Direct Dependencies**
+
+| Dependency | License |
+| :--- | :--- |
+| **github.com/go-logr/logr** | Apache-2.0 |
+| **github.com/google/uuid** | BSD-3-Clause |
+| **github.com/mitchellh/hashstructure/v2** | MIT |
+| **k8s.io/api** | Apache-2.0 |
+| **k8s.io/apimachinery** | Apache-2.0 |
+| **k8s.io/client-go** | Apache-2.0 |
+| **k8s.io/klog/v2** | Apache-2.0 |
+| **k8s.io/kube-openapi** | Apache-2.0 |
+| **sigs.k8s.io/controller-runtime** | Apache-2.0 |
+| **sigs.k8s.io/yaml** | MIT |
+
+### flux-restful-api Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **aiofiles** | Apache-2.0 |
+| **alembic** | MIT |
+| **fastapi** | MIT |
+| **httpx** | BSD-3-Clause |
+| **jinja2** | BSD-3-Clause |
+| **Markdown** | BSD-3-Clause |
+| **passlib[bcrypt]** | BSD-3-Clause |
+| **pyaml** | MIT |
+| **pydantic** | MIT |
+| **pydantic-settings** | MIT |
+| **pytest** | MIT |
+| **python-dotenv** | BSD-3-Clause |
+| **python-jose[cryptography]** | MIT |
+| **python-multipart** | Apache-2.0 |
+| **requests** | Apache-2.0 |
+| **sqlalchemy** | MIT |
+| **uvicorn** | BSD-3-Clause |
+
+### flux-python Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **cffi** | MIT |
+| **flux-core** | LGPL-3.0 |
+| **pyyaml** | MIT |
+
+### flux-sched-py Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **cython** | Apache-2.0 |
+| **flux-sched** | GPL-3.0 |
 
 ### fluence Dependencies
 
@@ -273,6 +274,8 @@ Issues are tracked individually in the GitHub repositories for each component (e
 | **Pthreads Support** | N/A |
 | **Jansson Library** | >= 2.7 |
 
+</details>
+
 ### 12. Please describe your release methodology and mechanics
 
 Flux utilizes Semantic Versioning.
@@ -296,15 +299,18 @@ Flux utilizes Semantic Versioning.
 
 ### 14. Please list the project's leadership team
 
+We differentiate between organization-level leadership with administration rights and tie-breaking control over the organization as a whole, the administrators, and project/repo-level leadership. This list represents the overall maintainers, with the projects they maintain and admin-status if applicable marked to the side.
+
 **Project Leaders / Core Maintainers:**
-*   **James Corbett** (LLNL) - Core/Sched, Flux CORAL-2
-*   **Jim Garlick** (LLNL) - Core Architect
-*   **Mark Grondona** (LLNL) - Core Architect
+*   **James Corbett** (LLNL) - Core, Sched, Flux CORAL-2
+*   **Jim Garlick** (LLNL) - Administrator, Core 
+*   **Mark Grondona** (LLNL) - Administrator, Core
 *   **Dan Milroy** (LLNL) - Sched, Fluence
-*   **Tom Scogland** (LLNL) - Core/Sched
+*   **Chris Moussa** (LLNL) - flux-accounting
+*   **Tom Scogland** (LLNL) - Administrator, Core, Sched
 *   **Vanessa Sochat** (LLNL) - Flux Operator, Flux Python, Flux Sched Py, Flux RESTful API, Fluence
 *   **Jae-Seung Yeom** (LLNL) - dyad
-*   **Tapasya Patki** (LLNL) - PerfFlowAspect
+*   **Tapasya Patki** (LLNL) - flux-power-monitor, PerfFlowAspect
 
 ### 15. Please list the project members with access to commit to the mainline of the project
 Commit access is granted to the Maintainers of the respective repositories. Key committers include:
@@ -325,11 +331,9 @@ Flux uses a "lazy consensus" model for most changes.
 
 *   **RFC Process:** Major architectural changes, protocol definitions, and API modifications must go through the [Flux RFC](https://flux-framework.readthedocs.io/projects/flux-rfc/en/latest/spec_1.html) process.
 *   **Pull Requests:** All code changes require review by at least one other maintainer.
-*   **Governance:** The Project Leadership and maintainers resolves conflicts that cannot be settled by consensus.
+*   **Governance:** The maintainers resolves conflicts that cannot be settled by consensus in their projects, and administrators serve that role at the organization level.
 
 ### 17. What is the maturity level of your project?
-
-The choice below reflects the small developer footprint of Flux, and not the impact or importance of the project. The maintainers need to adapt to membership in HPSF before committing to being an established member.
 
 [Established](https://github.com/hpsfoundation/tac?tab=readme-ov-file#established)
 
@@ -354,5 +358,5 @@ The choice below reflects the small developer footprint of Flux, and not the imp
 *   None immediate.
 
 **Requests:**
-*   Access to diverse hardware CI runners (specifically ARM64 and PowerPC).
+*   Access to diverse hardware CI runners (specifically ARM64 and PowerPC as well as varied GPUs).
 *   Cloud credits for large-scale integration testing.
