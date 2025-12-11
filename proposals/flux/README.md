@@ -149,6 +149,16 @@ Issues are tracked individually in the GitHub repositories for each component (e
 | **Autotools** (Autoconf, Automake, Libtool) | GPL-3.0 |
 | **pkg-config** | GPL-2.0 |
 
+### flux-accounting Dependencies
+
+| Dependency | License |
+| :--- | :--- |
+| **flux-core** | (LGPL-3.0) |
+| **Python 3.6+** | (PSF License) |
+| **PyYAML** | (Python module >= 3.10) (MIT) |
+| **sqlite-devel** | (Public Domain) |
+| **Jansson** | (MIT) |
+
 ### flux-operator Dependencies
 
 **Direct Dependencies**
